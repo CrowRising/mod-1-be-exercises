@@ -131,13 +131,23 @@ denver_biscuit_co = {
             is_open_now: true
         }
     ],
+    
     transactions: [
         "pickup",
         "delivery"
     ]
 }
+# require 'pry'; binding.pry
 
-p denver_biscuit_co[:name]
-p denver_biscuit_co[:rating]
-p denver_biscuit_co[:transactions]
-p denver_biscuit_co[:categories][0][:title]
+
+p denver_biscuit_co[:hours][0][:open][0][:start][:end]
+# p denver_biscuit_co[:location][:display_address]
+# p "#{denver_biscuit_co[:categories][0][:title]}", "#{denver_biscuit_co[:categories][1][:title]}"
+
+
+# p denver_biscuit_co[:name]
+# p denver_biscuit_co[:rating]
+# p denver_biscuit_co[:transactions]
+# p denver_biscuit_co[:categories][0][:title]
+# p denver_biscuit_co[:hours][0][:open][1][:start]
+# p denver_biscuit_co[:hours][0][:open][5][:end]
