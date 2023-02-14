@@ -137,3 +137,7 @@ denver_biscuit_co = {
     ]
 }
 
+p denver_biscuit_co[:name]
+p denver_biscuit_co[:rating]
+p denver_biscuit_co[:transactions]
+p denver_biscuit_co[:categories][0][:title]
