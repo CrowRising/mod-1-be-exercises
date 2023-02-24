@@ -8,8 +8,8 @@ RSpec.describe do
       pick_4 = Game.new('Pick 4', 2)
       mega_millions = Game.new('Mega Millions', 5, true)
 
-      expect(pick_4('Pick 4', 2)).to be_a(Game)
-      expect(mega_millions('Mega Millions', 5, true)).to be_a(Game)
+      expect(pick_4).to be_a(Game)
+      expect(mega_millions).to be_a(Game)
     end
 
     it 'has attributes' do
