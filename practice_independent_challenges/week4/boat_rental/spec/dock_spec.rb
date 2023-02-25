@@ -10,7 +10,7 @@ RSpec.describe do
   describe '#intialize' do
     it 'exists' do
     expect(@dock).to be_a(Dock)
-    excpect(@dock.name).to eq("The Rowing Dock")
+    expect(@dock.name).to eq("The Rowing Dock")
     end
   end
 end
