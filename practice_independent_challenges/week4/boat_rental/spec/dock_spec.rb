@@ -4,7 +4,6 @@ RSpec.describe do
   before(:each) do
     @dock = Dock.new("The Rowing Dock", 3)
     @renter = Renter.new("Patrick Star", "4242424242424242")
-    @kayak = Boat.new(:kayak, 20) 
   end
 
   describe '#intialize' do
@@ -14,41 +13,66 @@ RSpec.describe do
     expect(@dock.max_rental_time).to eq(3)
     end
   end
-end
-describe '#new instances of boats' do
-  it 'creates new boats' do
-    kayak_1 = Boat.new(:kayak, 20)
-    kayak_2 = Boat.new(:kayak, 20)
 
-    expect(kayak_1).to be_a(Boat)
-    expect(kayak_2).to be_a(Boat)
+  describe '#new instances of boats' do
+    it 'creates new boats' do
+      kayak_1 = Boat.new(:kayak, 20)
+      kayak_2 = Boat.new(:kayak, 20)
+      sup_1 = Boat.new(:standup_paddle_board, 15)
+
+      expect(kayak_1).to be_a(Boat)
+      expect(kayak_2).to be_a(Boat)
+      expect(sup_1).to be_a(Boat)
+    end
+  end
+
+  describe '#renters and their boats' do
+    it 'exists' do
+      dock = Dock.new("The Rowing Dock", 3)
+      patrick = Renter.new("Patrick Star", "4242424242424242")    
+      eugene = Renter.new("Eugene Crabs", "1313131313131313")  
+      kayak_1 = Boat.new(:kayak, 20)
+      kayak_2 = Boat.new(:kayak, 20)
+      sup_1 = Boat.new(:standup_paddle_board, 15)
+
+      dock.rent(kayak_1, patrick)
+      dock.rent(kayak_2, patrick)
+      dock.rent(sup_1, eugene) 
+
+      expect(dock.rental_log).to eq({kayak_1 => patrick, kayak_2 => patrick, sup_1 => eugene})
+    end
+  end
+
+  describe '#dock charge method' do
+    it 'exists' do
+      dock = Dock.new("The Rowing Dock", 3)
+      kayak_1 = Boat.new(:kayak, 20)
+      kayak_2 = Boat.new(:kayak, 20) 
+      sup_1 = Boat.new(:standup_paddle_board, 15)    
+      patrick = Renter.new("Patrick Star", "4242424242424242")
+      eugene = Renter.new("Eugene Crabs", "1313131313131313")
+
+
+      dock.rent(kayak_1, patrick)
+      dock.rent(kayak_2, patrick)
+      dock.rent(sup_1, eugene) 
+      kayak_1.add_hour
+      kayak_1.add_hour
+
+      expect(dock.charge(kayak_1)).to eq({:card_number => "4242424242424242", :amount => 40})
+
+      # sup_1.add_hour
+      # sup_1.add_hour
+
+      # sup_1.add_hour
+
+      # # Any hours past the max rental time should not count
+      # sup_1.add_hour
+
+      # sup_1.add_hour
+
+      # dock.charge(sup_1)
+
+    end
   end
 end
-
-
-# 
-# # => 3
-
-# 
-# # => #<Boat:0x00007fdeedb3a528...>
-
-#     
-# # => #<Boat:0x00007fdeedae1860...>
-
-# @sup_1 = Boat.new(:standup_paddle_board, 15)
-# # => #<Boat:0x00007fdeedaa8bc8...>
-
-# @patrick = Renter.new("Patrick Star", "4242424242424242")    
-# # => #<Renter:0x00007fdeed0ab828...>
-
-# @eugene = Renter.new("Eugene Crabs", "1313131313131313")    
-# # => #<Renter:0x00007fdeed8ce5c8...>
-
-# @dock.rent(kayak_1, patrick)    
-
-# @dock.rent(kayak_2, patrick)    
-
-# @dock.rent(sup_1, eugene)    
-
-# @dock.rental_log
-  
