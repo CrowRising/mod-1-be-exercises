@@ -11,18 +11,28 @@ RSpec.describe do
     it 'exists' do
     expect(@dock).to be_a(Dock)
     expect(@dock.name).to eq("The Rowing Dock")
+    expect(@dock.max_rental_time).to eq(3)
     end
+  end
+end
+describe '#new instances of boats' do
+  it 'creates new boats' do
+    kayak_1 = Boat.new(:kayak, 20)
+    kayak_2 = Boat.new(:kayak, 20)
+
+    expect(kayak_1).to be_a(Boat)
+    expect(kayak_2).to be_a(Boat)
   end
 end
 
 
-# @dock.max_rental_time
+# 
 # # => 3
 
-# @kayak_1 = Boat.new(:kayak, 20)
+# 
 # # => #<Boat:0x00007fdeedb3a528...>
 
-# @kayak_2 = Boat.new(:kayak, 20)    
+#     
 # # => #<Boat:0x00007fdeedae1860...>
 
 # @sup_1 = Boat.new(:standup_paddle_board, 15)
