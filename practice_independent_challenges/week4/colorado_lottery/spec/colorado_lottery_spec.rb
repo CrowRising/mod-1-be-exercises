@@ -7,7 +7,7 @@ RSpec.describe do
   describe '#initialize' do
     it 'exists' do
       lottery = ColoradoLottery.new
-      expect(lottery).to be a(ColoradoLottery) 
+      expect(lottery).to be_a(ColoradoLottery) 
       expect(lottery.registered_contestants).to eq({})
       expect(lottery.winners).to eq([])
       expect(lottery.current_contestants).to eq({})
@@ -16,6 +16,7 @@ RSpec.describe do
 
   describe '#contestants and games and interest and age' do
     it 'adds games registers and checks for interest and age' do
+      lottery = ColoradoLottery.new
       pick_4 = Game.new('Pick 4', 2)
       mega_millions = Game.new('Mega Millions', 5, true)
       cash_5 = Game.new('Cash 5', 1)
