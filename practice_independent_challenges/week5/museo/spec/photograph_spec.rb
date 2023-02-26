@@ -9,5 +9,12 @@ RSpec.describe do
     it 'exists' do
       expect(@photograph).to be_a(Photograph)
     end
+
+    it 'has attributes' do
+      expect(@photograph.id)
+      expect(@photograph.artist_id)
+      expect(@photograph.year)
+    end
   end
+
 end
