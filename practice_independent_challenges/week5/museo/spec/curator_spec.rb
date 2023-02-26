@@ -1,6 +1,4 @@
-require './lib/photograph'
-require './lib/artist'
-require './lib/curator'
+require 'spec_helper'
 
 RSpec.describe do
   before(:each) do
@@ -47,19 +45,19 @@ RSpec.describe do
   describe 'curates and logs info' do
     it 'has photographs' do
       @curator.add_photograph(@photo_1)
-      @curates.add_photograph(@photo_2)
-      expect(@curator.photographs).to eq([@photo_1, photo_2])
+      @curator.add_photograph(@photo_2)
+      expect(@curator.photographs).to eq([@photo_1, @photo_2])
     end
 
     it 'has artists' do
       @curator.add_artist(@artist_1)
       @curator.add_artist(@artist_2)
-      expect(@curator.artist).to eq([artist_1, artist_2])
+      expect(@curator.artists).to eq([@artist_1, @artist_2])
     end
 
     it 'can find artist by id' do
-      @curator.find_artist_by_id("1")
-      expect(@curator.find_artist_by_id("1")).to eq(artist_1)
+      @curator.add_artist(@artist_1)
+      expect(@curator.find_artist_by_id("1")).to eq(@artist_1)
     end
   end
 end
