@@ -1,9 +1,9 @@
-require 'spec_helper'
+require './lib/photograph'
+require './lib/artist'
 
 RSpec.describe do
   before(:each) do 
-    @photograph = Photograph.new
-    ({
+    @photograph = Photograph.new({
       id: "1",
       name: "Rue Mouffetard, Paris (Boy with Bottles)",
       artist_id: "4",
@@ -15,7 +15,7 @@ RSpec.describe do
     it 'exists' do
       expect(@photograph).to be_a(Photograph)
     end
-
+    
     it 'has attributes' do
       expect(@photograph.id).to eq(1)
       expect(@photograph.artist_id).to eq("Rue Mouffetard, Paris (Boy with Bottles)")
