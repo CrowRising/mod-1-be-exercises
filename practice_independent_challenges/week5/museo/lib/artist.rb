@@ -15,5 +15,6 @@ class Artist
   end
 
   def age_at_death
+    
   end
 end
