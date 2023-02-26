@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'csv'
 
 RSpec.describe do
   before(:each) do

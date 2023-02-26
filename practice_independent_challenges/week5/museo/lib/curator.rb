@@ -1,4 +1,6 @@
 class Curator 
+  # include Uploadable
+
   attr_reader :photographs,
               :artists
               
