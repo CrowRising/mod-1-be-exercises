@@ -19,4 +19,12 @@ class Curator
      artist.id == id
     end
   end
+
+  def list_of_artists_and_photos
+    @artists. each do |artist
+  end
+  # create a method that returns a list of artists and their photos
+    # the artist and the photo have an id num that connects them
+        # the retun should be a hash where the artist is the key and the photo is the value
+        #if the artist has more than one photo it will ve stored as an array
 end

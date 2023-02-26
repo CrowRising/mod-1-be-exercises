@@ -16,6 +16,6 @@ class Artist
 
   def age_at_death
    age = @died.to_i - @born.to_i
-   return age.to_s
+    age.to_s
   end
 end

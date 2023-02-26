@@ -64,8 +64,27 @@ RSpec.describe do
 
   describe 'return log data' do
     it 'returns lists of artists and photographs' do
-      
+      @curator.add_photograph(@photo_1)
+      @curator.add_photograph(@photo_2)
+      @curator.add_artist(@artist_1)
+      @curator.add_artist(@artist_2)
+      expect(@curator.list_of_artists_and_photos).to be_a Hash
+    end
 
+    it 'returns list of artists with more than one photo' do
+      @curator.add_photograph(@photo_1)
+      @curator.add_photograph(@photo_2)
+      @curator.add_artist(@artist_1)
+      @curator.add_artist(@artist_2)
+      expect(@curator.artists_multiple_photos).to eq([])
+    end
+
+    it 'returns list of photos taken by artists country of origin' do
+      @curator.add_photograph(@photo_1)
+      @curator.add_photograph(@photo_2)
+      @curator.add_artist(@artist_1)
+      @curator.add_artist(@artist_2)
+      expect(@curator.artist_photo_by_country()).to eq([])
     end
   end
 end
