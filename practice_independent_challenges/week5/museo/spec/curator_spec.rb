@@ -23,7 +23,14 @@ RSpec.describe do
       born: "1908",      
       died: "2004",      
       country: "France"      
-    })        
+    })
+    @artist_2 = Artist.new({
+      id: "2",      
+      name: "Ansel Adams",      
+      born: "1902",      
+      died: "1984",      
+      country: "United States"      
+    })  
   end
 
   describe '#intialize' do
@@ -37,7 +44,7 @@ RSpec.describe do
     end
   end
 
-  describe 'curates' do
+  describe 'curates and logs info' do
     it 'has photographs' do
       @curator.add_photograph(@photo_1)
       @curates.add_photograph(@photo_2)
@@ -45,10 +52,14 @@ RSpec.describe do
     end
 
     it 'has artists' do
-      @curator.add_artist(artist_1)
-      @curator.add_artist(artist_2)
-      expect(@curator.artist)
-     
+      @curator.add_artist(@artist_1)
+      @curator.add_artist(@artist_2)
+      expect(@curator.artist).to eq([artist_1, artist_2])
+    end
+
+    it 'can find artist by id' do
+      @curator.find_artist_by_id("1")
+      expect(@curator.find_artist_by_id("1")).to eq(artist_1)
     end
   end
 end
