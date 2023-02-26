@@ -7,7 +7,7 @@ RSpec.describe do
 
   describe '#initialize' do
     it 'exists' do
-      expect(activity).to be_a(Activity)
+      expect(@activity).to be_a(Activity)
     end
   end
 
@@ -26,20 +26,14 @@ RSpec.describe do
     end
   end
 
+  describe '#cost and participants' do
+    it 'checks for costs based on participants' do
+      @activity.add_participant("Maria", 20)
+      expect(@activity.total_cost).to eq(20)
 
- 
-
-#  @activity.participants
-
-
-#  @activity.total_cost
-
-
-#  @activity.add_participant("Luther", 40)
-
-#  @activity.participants
-
-
-#  @activity.total_cost
-   
+      @activity.add_participant("Luther", 40)
+      expect(@activity.participants).to eq({"Maria" => 20, "Luther" => 40})
+      expect(@activity.total_cost).to eq(60)
+    end
+  end
 end
