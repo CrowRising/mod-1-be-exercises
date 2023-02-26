@@ -58,6 +58,14 @@ RSpec.describe do
     it 'can find artist by id' do
       @curator.add_artist(@artist_1)
       expect(@curator.find_artist_by_id("1")).to eq(@artist_1)
+      expect(@curator.find_artist_by_id("55")).to eq(nil)
+    end
+  end
+
+  describe 'return log data' do
+    it 'returns lists of artists and photographs' do
+      
+
     end
   end
 end
