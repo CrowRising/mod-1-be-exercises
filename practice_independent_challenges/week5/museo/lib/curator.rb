@@ -1,6 +1,7 @@
 class Curator 
   attr_reader :photographs,
               :artists
+              
   def initialize
     @photographs = []
     @artists = []
@@ -21,10 +22,33 @@ class Curator
   end
 
   def list_of_artists_and_photos
-    @artists. each do |artist
+    list = {}
+    @artists.each do |artist|
+      list[artist] = @photographs.select do |photo|
+        photo.artist_id == artist.id
+      end
+    end
+    list
   end
-  # create a method that returns a list of artists and their photos
-    # the artist and the photo have an id num that connects them
-        # the retun should be a hash where the artist is the key and the photo is the value
-        #if the artist has more than one photo it will ve stored as an array
+
+  def artists_multiple_photos
+    multi_photo_artists = []
+    list_of_artists_and_photos.each do |artist, photos|
+      if photos.length > 1
+        multi_photo_artists << artist.name
+      end
+    end
+    multi_photo_artists
+  end
+
+  def artist_photo_by_country(country)
+    photo_list = []
+    list_of_artists_and_photos.each do |artist, photos|
+      if artist.country == country
+        photo_list << photos
+      end
+    end
+    photo_list.flatten
+  end
+  
 end

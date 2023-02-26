@@ -15,6 +15,12 @@ RSpec.describe do
       artist_id: "2",      
       year: "1941"      
     }) 
+    @photo_3 = Photograph.new({
+      id: "6",      
+      name: "Friday Frolics",      
+      artist_id: "2",      
+      year: "2058"      
+    }) 
     @artist_1 = Artist.new({
       id: "1",      
       name: "Henri Cartier-Bresson",      
@@ -68,15 +74,16 @@ RSpec.describe do
       @curator.add_photograph(@photo_2)
       @curator.add_artist(@artist_1)
       @curator.add_artist(@artist_2)
-      expect(@curator.list_of_artists_and_photos).to be_a Hash
+      expect(@curator.list_of_artists_and_photos).to eq({ @artist_1 => [@photo_1], @artist_2 => [@photo_2] })
     end
 
     it 'returns list of artists with more than one photo' do
       @curator.add_photograph(@photo_1)
       @curator.add_photograph(@photo_2)
+      @curator.add_photograph(@photo_3)
       @curator.add_artist(@artist_1)
       @curator.add_artist(@artist_2)
-      expect(@curator.artists_multiple_photos).to eq([])
+      expect(@curator.artists_multiple_photos).to eq(["Ansel Adams"])
     end
 
     it 'returns list of photos taken by artists country of origin' do
@@ -84,7 +91,7 @@ RSpec.describe do
       @curator.add_photograph(@photo_2)
       @curator.add_artist(@artist_1)
       @curator.add_artist(@artist_2)
-      expect(@curator.artist_photo_by_country()).to eq([])
+      expect(@curator.artist_photo_by_country("France")).to eq([@photo_1])
     end
   end
 end
