@@ -23,13 +23,24 @@ contents.each do |row|
 end
 
 contents = CSV.open("data/event_attendees.csv", headers: true, header_converters: :symbol)
+
+def clean_zipcode(zipcode)
+  if zipcode.nil?
+     "00000"
+  elsif zipcode.length == 5
+    zipcode
+  elsif zipcode.length < 5
+    zipcode.rjust(5, "0") #this pads a string says how many spaces to pad and it is saying pad with "0"
+  elsif zipcode.length > 5
+    zipcode[0..4]  #this says that if there are more than 5 digits just return the index places of 0..4
+  end
+ end
+
 contents.each do |row|
   name = row[:first_name]
-  zipcode = row[:zipcode]
-
-  # if the zip code is exactly five digits, assume that it is ok
-  # if the zip code is more than 5 digits, truncate it to the first 5 digits
-  # if the zip code is less than 5 digits, add zeros to the front until it becomes five digits
-
+  zipcode = clean_zipcode(row[:zipcode])
+  
   puts "#{name} #{zipcode}"
  end
+
+
