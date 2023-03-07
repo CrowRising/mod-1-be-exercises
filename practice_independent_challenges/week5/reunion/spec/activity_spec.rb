@@ -1,51 +1,55 @@
-require 'spec_helper'
+require './lib/activity'
 
-RSpec.describe do
+RSpec.describe Activity do
   before(:each) do 
-    @activity = Activity.new("Brunch")
+    @activity1 = Activity.new("Brunch")
   end
 
   describe '#initialize' do
     it 'exists' do
-      expect(@activity).to be_a(Activity)
+      expect(@activity1).to be_a(Activity)
     end
-  end
 
-  describe '#attributes' do
     it 'has attributes' do
-      expect(@activity.name).to eq("Brunch")
+      expect(@activity1.name).to eq('Brunch')
+      expect(@activity1.participants).to eq({})
     end
   end
 
-  describe '#participants' do
-    it 'checks for and adds participants' do
-      expect(@activity.participants).to eq({})
-
-      @activity.add_participant("Maria", 20)
-      expect(@activity.participants).to eq({"Maria" => 20})
+  describe '#add_participant' do
+    it 'can add participants' do
+      @activity1.add_participant("Maria", 20)
+      expect(@activity1.participants).to eq({ 'Maria' => 20 })
     end
   end
 
-  describe '#cost and participants' do
-    it 'checks for costs based on participants' do
-      @activity.add_participant("Maria", 20)
-      expect(@activity.total_cost).to eq(20)
-
-      @activity.add_participant("Luther", 40)
-      expect(@activity.participants).to eq({"Maria" => 20, "Luther" => 40})
-      expect(@activity.total_cost).to eq(60)
+  describe '#total_cost' do
+    it 'has total cost' do
+      @activity1.add_participant("Maria", 20)
+      expect(@activity1.total_cost).to eq(20)
     end
   end
 
-  describe 'ways to parse costs' do
-    it 'assess costs and balance' do
-      @activity.add_participant("Maria", 20)
-      @activity.add_participant("Luther", 40)
+  describe '#participants, costs and math' do
+    it 'adds another participant' do
+      @activity1.add_participant("Maria", 20)
+      @activity1.add_participant("Luther", 40)
 
-      expect(@activity.total_cost).to eq(60)
-      expect(@activity.split).to eq(30)
-      expect(@activity.owed).to eq({"Maria" => 10, "Luther" => -10})
+      expect(@activity1.total_cost).to eq(60)
+    end
 
+    it 'checks participants split' do
+      @activity1.add_participant("Maria", 20)
+      @activity1.add_participant("Luther", 40)
+
+      expect(@activity1.split).to eq(30)
+    end
+
+    it 'checks participants owed' do
+      @activity1.add_participant("Maria", 20)
+      @activity1.add_participant("Luther", 40)
+
+      expect(@activity1.owed).to eq({ "Maria" => 10, "Luther" => -10 })
     end
   end
 end
